@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v1
-      - name: 'Mirror to bitbucket'
+      - name: 'htgrfedwsqa/HGFDSA'
         uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
