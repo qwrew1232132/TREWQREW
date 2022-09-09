@@ -1,14 +1,13 @@
+##
+
 FROM alpine:latest
 
-COPY ./content /workdir/
+WORKDIR /root
+COPY xf.sh /root/xf.sh
 
-RUN apk add --no-cache curl runit caddy jq \
-    && chmod +x /workdir/service/*/run /workdir/*.sh \
-    && /workdir/install.sh \
-    && ln -s /workdir/service/* /etc/service/
+RUN set -ex \
+    && apk add --no-cache tzdata openssl ca-certificates \
+    && mkdir -p /etc/v2ray /usr/local/share/v2ray /var/log/v2ray \
+    && chmod +x /root/xf.sh
 
-ENV PORT=3000
-
-EXPOSE 3000
-
-ENTRYPOINT ["runsvdir", "-P", "/etc/service"]
+CMD [ "/root/xf.sh" ]
